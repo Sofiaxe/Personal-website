@@ -1,0 +1,259 @@
+/* Fonts: a classic text serif for headings and body */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap");
+
+/* ---------- Colour and type tokens ---------- */
+:root {
+  --fairway: #1f3d2b;      /* main green */
+  --fairway-stripe: #244633; /* slightly lighter green for the mown stripes */
+  --ink: #1b2a22;          /* body text */
+  --paper: #f7f8f3;        /* page background, a cool scorecard white */
+  --sand: #d9cba3;         /* bunker sand: rules and borders */
+  --sand-light: #ece4cb;   /* hover fills */
+  --flag: #b3262d;         /* flag red: used sparingly */
+
+  --font-head: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+
+  --measure: 44rem;        /* width of the text column */
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--fairway);
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: clamp(2.25rem, 6vw, 3.5rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2rem); }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1rem; max-width: 65ch; }
+
+a { color: var(--fairway); text-underline-offset: 0.2em; }
+a:hover { color: var(--flag); }
+
+:focus-visible {
+  outline: 3px solid var(--flag);
+  outline-offset: 3px;
+}
+
+/* ---------- Header and navigation ---------- */
+header {
+  background: var(--fairway);
+  border-bottom: 3px solid var(--sand);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+nav .logo {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul a {
+  color: var(--flag);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid transparent;
+}
+
+nav ul a:hover {
+  color: var(--paper);
+  border-bottom-color: var(--paper);
+}
+
+nav :focus-visible { outline-color: var(--paper); }
+
+/* ---------- Sections ---------- */
+/* Each section spans the full width, but its content stays in a centred column */
+main > section {
+  padding: 4.5rem max(1.5rem, calc((100% - var(--measure)) / 2));
+  border-bottom: 1px solid var(--sand);
+}
+
+main > section:last-child { border-bottom: 0; }
+
+main > section h2 {
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--sand);
+}
+
+/* ---------- Intro: the fairway ---------- */
+#intro {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--fairway) 0 4rem,
+      var(--fairway-stripe) 4rem 8rem
+    );
+  color: var(--paper);
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  border-bottom: 3px solid var(--sand);
+}
+
+#intro h1 { color: var(--paper); }
+
+#intro p {
+  font-size: 1.3rem;
+  color: var(--sand);
+  margin-bottom: 2rem;
+}
+
+/* ---------- Buttons with a red flag on the left ---------- */
+/* Styles the links in the intro and anything you give class="button" */
+#intro a,
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0.75rem 0.75rem 0;
+  padding: 0.65rem 1.25rem 0.65rem 1rem;
+  background: var(--paper);
+  color: var(--fairway);
+  border: 1px solid var(--fairway);
+  font-family: var(--font-head);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+#intro a::before,
+.button::before {
+  content: "";
+  flex: none;
+  width: 0.9rem;
+  height: 1.15rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 20'%3E%3Cpath d='M3 1v18' stroke='%231f3d2b' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M3.6 1.6 14.5 5.6 3.6 9.6z' fill='%23b3262d'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transition: transform 0.15s ease;
+}
+
+#intro a:hover,
+.button:hover {
+  background: var(--sand-light);
+  color: var(--fairway);
+}
+
+#intro a:hover::before,
+.button:hover::before { transform: translateY(-2px); }
+
+#intro :focus-visible { outline-color: var(--paper); }
+
+/* ---------- About ---------- */
+#about ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+#about li {
+  padding: 0.2rem 0.8rem;
+  border: 1px solid var(--sand);
+  background: #fff;
+  font-size: 1rem;
+}
+
+/* ---------- Projects and experience ---------- */
+article {
+  margin-bottom: 2.25rem;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--sand);
+}
+
+article:last-child { margin-bottom: 0; }
+
+article ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+
+/* Dates, tools lines etc. */
+article p:nth-of-type(1) { margin-bottom: 0.5rem; }
+
+#projects article a {
+  margin-right: 1.25rem;
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+}
+
+/* ---------- Contact ---------- */
+#contact ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#fot{
+    color: #b3262d;
+}
+#contact li {
+    margin-bottom: 0.5rem; }
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--fairway-stripe);
+  border-top: 3px solid var(--sand);
+  color: var(--sand);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+footer p { margin: 0 auto; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 40rem) {
+  body { font-size: 1.0625rem; }
+
+  main > section { padding-top: 3rem; padding-bottom: 3rem; }
+
+  #intro { padding-top: 4rem; padding-bottom: 4rem; }
+
+  nav { justify-content: flex-start; }
+}
+
+/* ---------- Respect reduced-motion settings ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  #intro a, .button,
+  #intro a::before, .button::before { transition: none; }
+}
