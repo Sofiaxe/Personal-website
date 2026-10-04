@@ -1,6 +1,5 @@
 /* Fonts: a classic text serif for headings and body */
-@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap");
 /* ---------- Colour and type tokens ---------- */
 :root {
   --fairway: #1f3d2b;      /* main green */
@@ -11,9 +10,8 @@
   --sand-light: #ece4cb;   /* hover fills */
   --flag: #b3262d;         /* flag red: used sparingly */
 
-  --font-head: "Libre Caslon Text", Georgia, "Times New Roman", serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-
+--font-head: "Newsreader", Georgia, "Times New Roman", serif;
+--font-body: "Newsreader", Georgia, serif;
   --measure: 44rem;        /* width of the text column */
 }
 
@@ -88,7 +86,7 @@ nav ul {
 }
 
 nav ul a {
-  color: var(--flag);
+  color: var(--sand);
   text-decoration: none;
   padding: 0.25rem 0;
   border-bottom: 1px solid transparent;
@@ -221,39 +219,44 @@ article p:nth-of-type(1) { margin-bottom: 0.5rem; }
   margin: 0;
   padding: 0;
 }
-#fot{
-    color: #b3262d;
-}
+
 #contact li {
     margin-bottom: 0.5rem; }
 
 /* ---------- Footer ---------- */
 footer {
-  background: var(--fairway-stripe);
+  background: var(--fairway);
   border-top: 3px solid var(--sand);
   color: var(--sand);
-  padding: 1.5rem;
-  text-align: center;
+  padding: 3rem 1.5rem 1.5rem;
   font-size: 0.95rem;
 }
 
-footer p { margin: 0 auto; }
-
-/* ---------- Small screens ---------- */
-@media (max-width: 40rem) {
-  body { font-size: 1.0625rem; }
-
-  main > section { padding-top: 3rem; padding-bottom: 3rem; }
-
-  #intro { padding-top: 4rem; padding-bottom: 4rem; }
-
-  nav { justify-content: flex-start; }
+footer section {
+  max-width: var(--measure);
+  margin: 0 auto 2rem;
 }
 
-/* ---------- Respect reduced-motion settings ---------- */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+footer h2 {
+  color: var(--sand);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--sand);
+}
 
-  #intro a, .button,
-  #intro a::before, .button::before { transition: none; }
+footer a { color: var(--sand); }
+footer a:hover { color: var(--paper); }
+footer :focus-visible { outline-color: var(--paper); }
+
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer li { margin-bottom: 0.5rem; }
+
+footer > p {
+  margin: 0 auto;
+  text-align: center;
 }
